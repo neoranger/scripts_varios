@@ -5,7 +5,7 @@
 echo -e "Introduzca la fecha a buscar (formato AAAA/MM/DD): ";
 read fecha
 
-echo "Introduzca el nombre del archivo (forma literal):";
+echo -e "Introduzca el nombre del archivo (forma literal):";
 read filename
 
 ARCHIVO="/home/ubuntu/workspace/pruebas/${filename}"
