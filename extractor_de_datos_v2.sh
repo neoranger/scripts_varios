@@ -1,11 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash #Tener en cuenta que si no anda puede ser tambien que el shebang sea #!/bin/bash
 
 #Pido fecha para buscar la línea
 
 echo -e "Introduzca la fecha a buscar (formato AAAA/MM/DD): ";
 read fecha
 
-ARCHIVO='/home/neoranger/Documentos/git/scripts_varios/ArchivoLog'
+echo "Introduzca el nombre del archivo (forma literal):";
+read filename
+
+ARCHIVO="/home/ubuntu/workspace/pruebas/${filename}"
 fechadest=$(date +%Y_%m_%d)
 FICHERODEST="${ARCHIVO}_${fechadest}"
 
