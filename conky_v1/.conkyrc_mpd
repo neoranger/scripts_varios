@@ -1,0 +1,23 @@
+conky.config = {
+own_window = true,
+own_window_class = 'Conky',
+own_window_type = 'desktop',
+own_window_transparent = true,
+out_to_console = true,
+out_to_x = no,
+double_buffer = true,
+use_xft = true,
+font = 'Hack:size=11',
+update_interval = 1.0,
+total_run_times = 0,
+use_spacer = 'none',
+alignment = 'top_left',
+gap_x = 40,
+gap_y = 800,
+default_color = '#4B8A08',
+}
+ 
+conky.text = [[
+${color white}${scroll 30 $mpd_artist - $mpd_title} ${color #88aadd}[$mpd_status] ${color white}$mpd_bitrate kbps
+${color #88aadd}$mpd_bar
+]]

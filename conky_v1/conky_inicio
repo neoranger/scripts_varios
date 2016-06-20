@@ -1,0 +1,5 @@
+#! /bin/bash
+sleep 10 &amp; conky -c ~/.conky/.conkyrc_bar &amp;
+sleep 10 &amp; conky -c ~/.conky/.conkyrc_mpd &amp;
+sleep 10 &amp; conky -c ~/.conky/.conkyrc_rss &amp;
+sleep 10 &amp; conky -c ~/.conky/.conkyrc_clima 
