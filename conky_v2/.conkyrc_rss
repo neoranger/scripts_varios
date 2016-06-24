@@ -1,0 +1,36 @@
+conky.config = {
+alignment = 'top_right',
+default_color = 'gray',
+use_xft = true,
+font = 'Hack:size=9',
+gap_x = 40,
+gap_y = 200,
+minimum_height = 50,
+minimum_width = 50,
+maximum_width = 400,
+double_buffer = true,
+out_to_console = true,
+out_to_x = no,
+own_window = true,
+own_window_class = 'Conky',
+own_window_type = 'desktop',
+own_window_transparent = true,
+own_window_hints = 'undecorated','below','sticky','skip_taskbar','skip_pager',
+update_interval = 1.0,
+}
+ 
+conky.text = [[
+${color #88aadd}${alignc}[RSS Feed]
+${color orange}${hr 1}
+${color orange}»${color white} Debian Security
+$color${rss https://www.debian.org/security/dsa 5 item_titles 3}
+${color orange}»${color white} Arch Linux
+$color${rss https://www.archlinux.org/feeds/news/ 5 item_titles 3}
+${color orange}»${color white} NeoSiteLinux
+$color${rss http://www.neositelinux.com.ar/feed 5 item_titles 3}
+${color orange}»${color white} Planeta SysAdmin
+$color${rss https://planetasysadmin.com/rss20.xml 5 item_titles 3}
+${color orange}»${color white} Planet Libre
+$color${rss http://planetlibre.es/feed/ 5 item_titles 3}
+${color orange}${hr 1}
+]]
