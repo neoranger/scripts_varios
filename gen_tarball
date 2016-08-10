@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+#This script allows generate a tarball file from git repo
+clear
+dirproy=$(basename "`pwd`")
+versionapp=$dirproy\_$(date +%d)_$(date +%b)
+echo
+echo -e 'Generando archivo tarball del proyecto: \e[1;33m'\"$dirproy\"'\e[0m'
+echo -e 'Nombre para la Version: \e[1;36m'\"$versionapp\"'\e[0m'
+rama=$(git br| sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \1/')
+echo -e 'Rama actual: \e[1;32m' $rama '\e[0m'
+arch=$dirproy\_$(date +%d)$(date +%b)
+echo -e 'Archivo a generar: \e[1;31m' \"$arch.tar.gz\" '\e[0m'
+echo
+echo Linea de configuracion:
+echo "git archive --format=tar --prefix=$versionapp/$rama | gzip >$arch.tar.gz"
+echo
+echo Generando Tarball espere...
+echo
+git archive --format=tar --prefix=$versionapp/$rama | gzip >$arch.tar.gz
+
+if [ -e $arch.tar.gz ]
+then
+  echo -e 'Archivo Tarball: \e[1;31m'$arch.tar.gz'\e[0m creado satisfactoriamente.'
+else
+	echo -e '\e[1;31m Ocurrio un error al crear el archivo: '$arch.tar.gz'\e[0m'
+fi
