@@ -4,8 +4,8 @@ until [ "$selection" = "0" ]; do
     clear
     echo "Reproducir sonido:"
     echo ""
-    echo "1: Fire in the hole"
-    echo "2: Badumtss"
+    echo "1: CriCriCri"
+    echo "2: Dentista"
     echo "3: Careless Whisper"
     echo "4: EA Games"
     echo "5: Harlem Shake"
@@ -18,8 +18,8 @@ until [ "$selection" = "0" ]; do
     echo ""
     read selection
     case $selection in
-        1 ) play -q fire_in_the_hole.ogg ;;
-        2 ) play -q badumtss.ogg ;;
+        1 ) cplay -q cricricri.mp3 ;;
+        2 ) cplay -q dentista.mp3 ;;
         3 ) play -q careless_whisper.ogg ;;
         4 ) play -q ea_games.ogg ;;
         5 ) play -q harlem_shake.ogg ;;
