@@ -18,7 +18,7 @@ until [ "$selection" = "0" ]; do
     echo ""
     read selection
     case $selection in
-        1 ) cplay -q cricricri.mp3 ;;
+        1 ) mocp -q cricricri.mp3 ;;
         2 ) cplay -q dentista.mp3 ;;
         3 ) play -q careless_whisper.ogg ;;
         4 ) play -q ea_games.ogg ;;
