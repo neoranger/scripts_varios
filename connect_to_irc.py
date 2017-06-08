@@ -25,5 +25,3 @@ while 1:
 
         if(line[0]=="PING"):
             s.send("PONG %s\r\n" % line[1])
-
-Pasted a minute ago — Expires in 1 day
