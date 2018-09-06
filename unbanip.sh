@@ -1,17 +1,39 @@
 #!/bin/bash
 
-echo "Ingresar IP a desbanear: "
-read ip
+echo "Conoce la IP a desbloquear? Y/N"
+read respuesta1
 
-sudo fail2ban-client status
+if [ "$respuesta1" == "Y" ] || [ "$respuesta1" == "y" ]; then
+	echo "Ingresar IP a desbanear: "
+	read ip
+else
+	sudo iptables -L -n
+	echo "----------------------------------------------------------"
+	echo "Ingresar IP a desbanear: "
+        read ip
+fi
 
-echo "Ingresar jail de ip a desbanear (literal): "
-read jail
+echo "----------------------------------------------------------"
+
+echo "Conoce la celda? Y/N"
+read respuesta2
+
+if [ "$respuesta2" == "Y" ] || [ "$respuesta2" == "y" ]; then
+        echo "Ingresar nombre de celda: "
+        read jail
+else
+        sudo fail2ban-client status
+        echo "----------------------------------------------------------"
+        echo "Ingresar nombre de celda: "
+        read jail
+fi
+
+echo "----------------------------------------------------------"
 
 echo "La jail a usar es: $jail y la ip a desbanear es: $ip. Es correcto? Y/N"
-read respuesta
+read respuesta3
 
-if [ "$respuesta" == "Y" ] || [ "$respuesta" == "y" ]; then
+if [ "$respuesta3" == "Y" ] || [ "$respuesta3" == "y" ]; then
 	sudo fail2ban-client set "$jail" unbanip "$ip"
 else
 	echo "Se aborta el programa"
