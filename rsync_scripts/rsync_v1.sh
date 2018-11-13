@@ -11,7 +11,7 @@ echo "###################################################"
 echo "Ingresar directorio o archivo de origen"
 read origen
 
-echo "Ingresar directorio o archivo de destino"
+echo "Ingresar directorio o archivo de destino (puede ser a un equipo remoto. Ejemplo: usuario@ip:/ruta/destino/)"
 read destino
 
 echo "¿El origen $origen es correcto? Y/N"
