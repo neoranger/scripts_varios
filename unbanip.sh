@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Script para desbloquear IPs de una manera fácil.
+# Funciona si estás usando fail2ban en tu servidor.
+# www.neositelinux.com
+
 echo "Conoce la IP a desbloquear? Y/N"
 read respuesta1 
 if [ -z $respuesta1 ]; then
