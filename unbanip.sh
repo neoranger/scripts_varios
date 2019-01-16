@@ -2,7 +2,7 @@
 
 # Script para desbloquear IPs de una manera fácil.
 # Funciona si estás usando fail2ban en tu servidor.
-# www.neositelinux.com
+# Mas info: https://neositelinux.com/desbloquear-ip-con-fail2ban
 
 echo "Conoce la IP a desbloquear? Y/N"
 read respuesta1 
