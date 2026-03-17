@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Cafeina Artesanal
+Comment=Evita que la pantalla se suspenda o apague
+Exec=bash -C "$HOME/Documentos/git/scripts_varios/cafeina.sh"
+Icon=coffee
+Terminal=false
+Type=Application
+Categories=Utility;System;
