@@ -93,8 +93,8 @@ let longitud=`expr length "$palabra_user2"`-1     # Sacar la longitud de la pala
 # echo $longitud
 for i in $(seq 0 $longitud);
 do
-palabra_user[$i]=${palabra_user2:$i:1}            # Se mete cada caracter en un subindice, en el array palabra_user[x]
-# echo palabra_user[$i] = ${palabra_user[$i]}
+    palabra_user[$i]=${palabra_user2:$i:1}            # Se mete cada caracter en un subindice, en el array palabra_user[x]
+    # echo palabra_user[$i] = ${palabra_user[$i]}
 done
 read -p "Defina el numero de intentos : " intentos       # No. de intentos que puede cometer el usuario.
 declare -a palabra_adivinar[$longitud];
