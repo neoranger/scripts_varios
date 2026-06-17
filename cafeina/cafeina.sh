@@ -36,12 +36,71 @@ comprobar_dependencias() {
 
 comprobar_dependencias
 
-# --- 2. CONFIGURACIÓN Y USO DE ICONOS ---
+# --- 2. CONFIGURACIÓN Y AUTOINSTALACIÓN ---
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-ICON_ON="${SCRIPT_DIR}/icons/coffee-on.svg"
-ICON_OFF="${SCRIPT_DIR}/icons/coffee-off.svg"
 
-# Si no existen, usar un respaldo genérico del sistema
+autoinstalar() {
+    REAL_PATH="$(readlink -f "$0")"
+    
+    # Evita preguntar si ya se está ejecutando desde la ubicación de instalación del usuario
+    if [ "$REAL_PATH" = "$HOME/.local/bin/cafeina" ]; then
+        return
+    fi
+
+    DESKTOP_DEST="$HOME/.local/share/applications/cafeina.desktop"
+
+    # Si ya existe el archivo desktop, asumimos que ya está instalado
+    if [ -f "$DESKTOP_DEST" ]; then
+        return
+    fi
+
+    # Preguntamos si desea instalar mediante un diálogo de YAD
+    if yad --question --title="Instalación de Cafeína" \
+        --text="¿Deseas instalar Cafeína Artesanal en tu sistema?\n\nEsto copiará el script a ~/.local/bin/ y creará un lanzador para tu menú de aplicaciones." \
+        --width=380 --button="Instalar:0" --button="Omitir:1" --window-icon="preferences-system-power-management"; then
+
+        # Crear estructura de carpetas de usuario si no existen
+        mkdir -p "$HOME/.local/bin"
+        mkdir -p "$HOME/.local/share/cafeina/icons"
+        mkdir -p "$HOME/.local/share/applications"
+
+        # Copiar iconos a una ruta estática de usuario
+        cp -f "${SCRIPT_DIR}/icons/coffee-on.svg" "$HOME/.local/share/cafeina/icons/coffee-on.svg" 2>/dev/null
+        cp -f "${SCRIPT_DIR}/icons/coffee-off.svg" "$HOME/.local/share/cafeina/icons/coffee-off.svg" 2>/dev/null
+
+        # Copiar el propio script
+        cp -f "$0" "$HOME/.local/bin/cafeina"
+        chmod +x "$HOME/.local/bin/cafeina"
+
+        # Generar el archivo Desktop para el lanzador de aplicaciones del usuario
+        cat <<EOF > "$DESKTOP_DEST"
+[Desktop Entry]
+Name=Cafeina Artesanal
+Comment=Evita que la pantalla se suspenda o apague
+Exec=$HOME/.local/bin/cafeina
+Icon=$HOME/.local/share/cafeina/icons/coffee-on.svg
+Terminal=false
+Type=Application
+Categories=Utility;
+EOF
+
+        notify-send "Cafeína Artesanal" "¡Instalación completada con éxito! Ya puedes buscar la aplicación en tu sistema." -i "$HOME/.local/share/cafeina/icons/coffee-on.svg"
+    fi
+}
+
+autoinstalar
+
+# --- 3. CONFIGURACIÓN Y USO DE ICONOS ---
+# Buscar iconos en la ruta instalada o en el directorio local del script
+if [ -f "$HOME/.local/share/cafeina/icons/coffee-on.svg" ]; then
+    ICON_ON="$HOME/.local/share/cafeina/icons/coffee-on.svg"
+    ICON_OFF="$HOME/.local/share/cafeina/icons/coffee-off.svg"
+else
+    ICON_ON="${SCRIPT_DIR}/icons/coffee-on.svg"
+    ICON_OFF="${SCRIPT_DIR}/icons/coffee-off.svg"
+fi
+
+# Si no existen en ninguna de las rutas, usar un respaldo genérico del sistema
 [ ! -f "$ICON_ON" ] && ICON_ON="preferences-system-power-management"
 [ ! -f "$ICON_OFF" ] && ICON_OFF="preferences-system-power-management"
 
@@ -120,4 +179,3 @@ YAD_PID=$!
 while kill -0 "$YAD_PID" 2>/dev/null; do
     wait "$YAD_PID" 2>/dev/null
 done
-
