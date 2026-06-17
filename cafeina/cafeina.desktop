@@ -2,7 +2,7 @@
 Name=Cafeina Artesanal
 Comment=Evita que la pantalla se suspenda o apague
 Exec=bash -C "$HOME/Documentos/git/scripts_varios/cafeina/cafeina.sh"
-Icon=preferences-system-power-management
+Icon=/home/neoranger/Documentos/git/scripts_varios/cafeina/icons/coffee-on.svg
 Terminal=false
 Type=Application
 Categories=Utility;
