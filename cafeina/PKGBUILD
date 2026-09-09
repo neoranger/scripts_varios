@@ -1,0 +1,22 @@
+# Maintainer: Usuario <correo@ejemplo.com>
+pkgname=cafeina-artesanal
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Evita que la pantalla se suspenda o apague desde la bandeja del sistema"
+arch=('any')
+license=('GPL-3.0-or-later')
+depends=('yad' 'xdg-utils' 'xorg-xset' 'libnotify')
+source=('cafeina.sh'
+        'cafeina.desktop'
+        'LICENSE')
+sha256sums=('c1bac03aa0cc6a69f8dac197d39bcbde4aad26340830ba41fc9c75842d60510e'
+            '7ad78ff67db72b988ca2f7a111989400e51cfa3002b7b6aca188bc227d6bf4b9'
+            'b6a8bf63ae2c95b0aa256ee774680d7bd18f21f457da75466f7610b3b16acc4e')
+
+package() {
+    install -Dm755 "$srcdir/cafeina.sh" "$pkgdir/usr/bin/cafeina"
+    install -Dm644 "$srcdir/cafeina.desktop" "$pkgdir/usr/share/applications/cafeina.desktop"
+    install -Dm644 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 "$startdir/icons/coffee-on.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/cafeina-coffee-on.svg"
+    install -Dm644 "$startdir/icons/coffee-off.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/cafeina-coffee-off.svg"
+}
